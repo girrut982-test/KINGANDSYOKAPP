@@ -1,57 +1,183 @@
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  font-family:Arial,sans-serif;
-  background:radial-gradient(circle at top,#0b1c2d,#020b14);
-  color:#9fd4ff;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* ===== RAIN ===== */
-.rain,.lightning{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-2;
-}
-.drop{
-  position:absolute;
-  bottom:100%;
-  width:2px;
-  background:linear-gradient(transparent,rgba(170,220,255,.8));
-  animation:fall linear infinite;
-}
-@keyframes fall{to{transform:translateY(120vh)}}
-
-/* ===== LIGHTNING ===== */
-.lightning{
-  background:white;
-  opacity:0;
-  animation:flash 8s infinite;
-}
-@keyframes flash{
-  0%,93%,100%{opacity:0}
-  94%{opacity:.25}
+body {
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at bottom, rgba(255,80,0,0.35), transparent 60%),
+    linear-gradient(to bottom, #120000, #000000);
+  color: #ffb3b3;
 }
 
-/* ===== CAR (SAFE) ===== */
-.car{
-  position:fixed;
-  bottom:12px;
-  left:-150px;
-  animation:drive 22s linear infinite;
-  pointer-events:none;
-  z-index:-1;
-}
-.car img{width:110px;opacity:.9}
-@keyframes drive{
-  from{transform:translateX(-200px)}
-  to{transform:translateX(120vw)}
+/* ===== FIRE GLOW ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 95%, rgba(255,60,0,0.4), transparent 55%),
+    radial-gradient(circle at 70% 90%, rgba(255,120,0,0.35), transparent 60%);
+  animation: fireGlow 4s infinite alternate;
+  pointer-events: none;
+  z-index: -1;
 }
 
-/* ===== UI ===== */
-.modal{z-index:999}
-.banner img{width:100%;max-height:360px;object-fit:cover}
-.container{max-width:1100px;margin:auto;padding:60px 20px;display:grid;gap:30px}
-.app-card{background:rgba(255,255,255,.06);padding:30px;border-radius:18px;text-align:center}
-.btn{display:block;width:100%;padding:14px;border-radius:30px;margin:10px 0}
-footer{text-align:center;padding:25px}
+@keyframes fireGlow {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* ===== BANNER ===== */
+.banner img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+}
+
+/* ===== GRID ===== */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+/* ===== CARD ===== */
+.app-card {
+  background: rgba(0,0,0,0.6);
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 35px rgba(255,40,0,0.4);
+  transition: 0.3s;
+}
+
+.app-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 55px rgba(255,80,0,0.9);
+}
+
+.app-card img {
+  width: 110px;
+  margin-bottom: 15px;
+}
+
+.app-card h2 {
+  color: #fff;
+}
+
+.app-card p {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  background: linear-gradient(135deg, #ff2a2a, #ff7a18);
+  color: #000;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid #ff5a2a;
+  color: #ff9a7a;
+}
+
+.package-btn {
+  background: linear-gradient(135deg, #b80000, #ff2a2a);
+  box-shadow: 0 0 25px rgba(255,40,0,0.8);
+  color: #fff;
+}
+
+/* ===== PAYMENT ===== */
+.payment {
+  text-align: center;
+  padding: 70px 20px;
+}
+
+.payment h2 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.payment a.btn,
+.payment button.btn {
+  max-width: 1100px;
+  margin: 15px auto;
+  height: 60px;
+  font-size: 18px;
+}
+
+/* ===== HELP ===== */
+.help {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.help-btn {
+  display: block;
+  max-width: 340px;
+  margin: 15px auto;
+  padding: 16px;
+  border-radius: 30px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.whatsapp { background: #25d366; }
+.telegram { background: #0088cc; }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 13px;
+  color: #ff8a8a;
+  border-top: 1px solid rgba(255,60,0,0.4);
+}
+
+/* ===== MODAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.modal-box {
+  background: #140000;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 360px;
+  width: 90%;
+}
+
+/* ===== QR ===== */
+.qr-img {
+  width: 220px;
+  margin: 15px 0;
+}
+
+.no-save {
+  pointer-events: none;
+  user-select: none;
+}
