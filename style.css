@@ -4,11 +4,15 @@ body{
   font-family:Arial,sans-serif;
   background:radial-gradient(circle at top,#0b1c2d,#020b14);
   color:#9fd4ff;
-  overflow-x:hidden;
 }
 
 /* ===== RAIN ===== */
-.rain{position:fixed;inset:0;pointer-events:none;z-index:-1}
+.rain,.lightning{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+}
 .drop{
   position:absolute;
   bottom:100%;
@@ -20,69 +24,34 @@ body{
 
 /* ===== LIGHTNING ===== */
 .lightning{
-  position:fixed;
-  inset:0;
   background:white;
   opacity:0;
-  animation:flash 7s infinite;
-  pointer-events:none;
-  z-index:0;
+  animation:flash 8s infinite;
 }
 @keyframes flash{
-  0%,92%,100%{opacity:0}
-  93%{opacity:.15}
-  94%{opacity:.4}
-  95%{opacity:.1}
+  0%,93%,100%{opacity:0}
+  94%{opacity:.25}
 }
 
-/* ===== CAR ===== */
+/* ===== CAR (SAFE) ===== */
 .car{
   position:fixed;
-  bottom:15px;
+  bottom:12px;
   left:-150px;
-  z-index:2;
-  animation:drive 18s linear infinite;
+  animation:drive 22s linear infinite;
+  pointer-events:none;
+  z-index:-1;
 }
-.car img{
-  width:120px;
-  filter:drop-shadow(0 0 8px rgba(0,140,255,.6));
-}
+.car img{width:110px;opacity:.9}
 @keyframes drive{
   from{transform:translateX(-200px)}
   to{transform:translateX(120vw)}
 }
 
-/* ===== UI (YOUR ORIGINAL) ===== */
+/* ===== UI ===== */
+.modal{z-index:999}
 .banner img{width:100%;max-height:360px;object-fit:cover}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:60px 20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:30px;
-}
-.app-card{
-  background:rgba(255,255,255,.06);
-  border-radius:18px;
-  padding:30px;
-  text-align:center;
-  box-shadow:0 0 35px rgba(0,140,255,.3);
-  transition:.3s;
-}
-.app-card:hover{transform:translateY(-6px)}
-.app-card img{width:110px;margin-bottom:15px}
-.btn{
-  display:block;
-  width:100%;
-  padding:14px;
-  margin:10px 0;
-  border-radius:30px;
-  background:linear-gradient(135deg,#008cff,#4fc3ff);
-  font-weight:bold;
-  text-decoration:none;
-  color:#000;
-}
-.btn.outline{background:transparent;border:1px solid #4fc3ff;color:#4fc3ff}
-.package-btn{background:linear-gradient(135deg,#ff3b3b,#ff7676);color:#fff}
-footer{text-align:center;padding:25px;font-size:13px;color:#7bbcff}
+.container{max-width:1100px;margin:auto;padding:60px 20px;display:grid;gap:30px}
+.app-card{background:rgba(255,255,255,.06);padding:30px;border-radius:18px;text-align:center}
+.btn{display:block;width:100%;padding:14px;border-radius:30px;margin:10px 0}
+footer{text-align:center;padding:25px}
