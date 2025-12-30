@@ -95,52 +95,71 @@ const prices = {
     { name: "1 Month", price: "RM15" },
     { name: "3 Months", price: "RM38" },
     { name: "6 Months", price: "RM70" },
-    { name: "1 Year", price: "RM110" },
-    { name: "4 Years", price: "RM300" }
+    { name: "1 Year", price: "RM110" }
   ],
   SYOKTV: [
     { name: "1 Month", price: "RM13" },
-    { name: "3 Months", price: "RM33" },
-    { name: "6 Months", price: "RM60" },
-    { name: "1 Year", price: "RM110" },
-    { name: "2 Years", price: "RM175" },
-    { name: "4 Years", price: "RM270" }
+    { name: "3 Months", price: "RM33" }
   ],
   SYBERTV: [
     { name: "33 Days", price: "RM14" },
-    { name: "100 Days", price: "RM38" },
-    { name: "200 Days", price: "RM70" },
-    { name: "400 Days", price: "RM115" },
-    { name: "800 Days", price: "RM175" },
-    { name: "3 Years", price: "RM230" }
+    { name: "100 Days", price: "RM38" }
   ],
   ODTV: [
-    { name: "1 Month", price: "RM13" },
-    { name: "3 Months", price: "RM34" },
-    { name: "6 Months", price: "RM65" },
-    { name: "12 Months", price: "RM110" }
+    { name: "1 Month", price: "RM13" }
   ]
 };
 
 function openPackage(app) {
-  document.getElementById("packageModal").style.display = "flex";
-  document.getElementById("appTitle").innerText = app + " Packages";
-  const list = document.getElementById("priceList");
-  list.innerHTML = "";
+  packageModal.style.display = "flex";
+  appTitle.innerText = app + " Packages";
+  priceList.innerHTML = "";
+
   prices[app].forEach(pkg => {
-    const wa = `https://wa.me/601159635600?text=${encodeURIComponent(
-      `Hi, I paid ${pkg.price} for ${pkg.name} ${app}`
-    )}`;
-    list.innerHTML += `
-      <li>${pkg.name} — <strong>${pkg.price}</strong><br>
-      <a href="${wa}" class="btn buy-btn">📲 I Paid – WhatsApp</a></li>`;
+
+    const newMsg = `Hi, I want NEW ID for ${app}.
+Package: ${pkg.name}
+Price: ${pkg.price}
+
+Receipt attached below.`;
+
+    const renewHandler = `
+      const oldId = prompt("Please enter your OLD ID for renewal:");
+      if(oldId){
+        const msg = \`Hi, I want RENEW for ${app}.
+OLD ID: \${oldId}
+Package: ${pkg.name}
+Price: ${pkg.price}
+
+Receipt attached below.\`;
+        window.open("https://wa.me/601159635600?text=" + encodeURIComponent(msg));
+      }
+    `;
+
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${pkg.name}</strong> — ${pkg.price}<br><br>
+
+      <a class="btn new-btn"
+         href="https://wa.me/601159635600?text=${encodeURIComponent(newMsg)}">
+         🆕 NEW ID
+      </a>
+
+      <button class="btn renew-btn" onclick="${renewHandler}">
+         ♻️ RENEW
+      </button>
+    `;
+
+    priceList.appendChild(li);
   });
 }
 
-function closePackage(){document.getElementById("packageModal").style.display="none";}
-function openQR(){document.getElementById("qrModal").style.display="flex";}
-function closeQR(){document.getElementById("qrModal").style.display="none";}
+function closePackage(){packageModal.style.display="none";}
+function openQR(){qrModal.style.display="flex";}
+function closeQR(){qrModal.style.display="none";}
 </script>
 
 </body>
 </html>
+
+
