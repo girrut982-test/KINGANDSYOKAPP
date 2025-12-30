@@ -8,13 +8,9 @@
 </head>
 <body>
 
-<!-- RAIN -->
+<!-- BACKGROUND EFFECTS -->
 <div class="rain"></div>
-
-<!-- LIGHTNING -->
 <div class="lightning"></div>
-
-<!-- CAR -->
 <div class="car">
   <img src="car.png" alt="car">
 </div>
@@ -26,7 +22,6 @@
 
 <!-- APPS -->
 <section class="container">
-
   <div class="app-card">
     <img src="logo.png">
     <h2>KINGTV</h2>
@@ -62,7 +57,6 @@
     <a href="#" class="btn outline">Download Link 2</a>
     <button class="btn package-btn" onclick="openPackage('ODTV')">📦 View Packages</button>
   </div>
-
 </section>
 
 <!-- PAYMENT -->
@@ -81,7 +75,7 @@
 
 <footer>© 2025 SHOMEX SHOP — All Rights Reserved</footer>
 
-<!-- MODALS -->
+<!-- MODALS (TOP LAYER) -->
 <div class="modal" id="packageModal">
   <div class="modal-box">
     <h2 id="appTitle"></h2>
@@ -99,70 +93,37 @@
   </div>
 </div>
 
-<!-- ORIGINAL SCRIPT -->
+<!-- ORIGINAL JS -->
 <script>
 const prices = {
-  KINGTV: [
-    { name: "1 Month", price: "RM15" },
-    { name: "3 Months", price: "RM38" },
-    { name: "6 Months", price: "RM70" },
-    { name: "1 Year", price: "RM110" },
-    { name: "4 Years", price: "RM300" }
-  ],
-  SYOKTV: [
-    { name: "1 Month", price: "RM13" },
-    { name: "3 Months", price: "RM33" },
-    { name: "6 Months", price: "RM60" },
-    { name: "1 Year", price: "RM110" },
-    { name: "2 Years", price: "RM175" },
-    { name: "4 Years", price: "RM270" }
-  ],
-  SYBERTV: [
-    { name: "33 Days", price: "RM14" },
-    { name: "100 Days", price: "RM38" },
-    { name: "200 Days", price: "RM70" },
-    { name: "400 Days", price: "RM115" },
-    { name: "800 Days", price: "RM175" },
-    { name: "3 Years", price: "RM230" }
-  ],
-  ODTV: [
-    { name: "1 Month", price: "RM13" },
-    { name: "3 Months", price: "RM34" },
-    { name: "6 Months", price: "RM65" },
-    { name: "12 Months", price: "RM110" }
-  ]
+  KINGTV:[{name:"1 Month",price:"RM15"}],
+  SYOKTV:[{name:"1 Month",price:"RM13"}],
+  SYBERTV:[{name:"33 Days",price:"RM14"}],
+  ODTV:[{name:"1 Month",price:"RM13"}]
 };
 
-function openPackage(app) {
-  document.getElementById("packageModal").style.display = "flex";
-  document.getElementById("appTitle").innerText = app + " Packages";
-  const list = document.getElementById("priceList");
-  list.innerHTML = "";
-  prices[app].forEach(pkg => {
-    const wa = `https://wa.me/601159635600?text=${encodeURIComponent(
-      `Hi, I paid ${pkg.price} for ${pkg.name} ${app}`
-    )}`;
-    list.innerHTML += `
-      <li>${pkg.name} — <strong>${pkg.price}</strong><br>
-      <a href="${wa}" class="btn buy-btn">📲 I Paid – WhatsApp</a></li>`;
+function openPackage(app){
+  packageModal.style.display="flex";
+  appTitle.innerText=app+" Packages";
+  priceList.innerHTML="";
+  prices[app].forEach(p=>{
+    priceList.innerHTML+=`<li>${p.name} — <strong>${p.price}</strong></li>`;
   });
 }
-
-function closePackage(){document.getElementById("packageModal").style.display="none";}
-function openQR(){document.getElementById("qrModal").style.display="flex";}
-function closeQR(){document.getElementById("qrModal").style.display="none";}
+function closePackage(){packageModal.style.display="none";}
+function openQR(){qrModal.style.display="flex";}
+function closeQR(){qrModal.style.display="none";}
 </script>
 
 <!-- RAIN SCRIPT -->
 <script>
-const rain = document.querySelector(".rain");
-for (let i = 0; i < 220; i++) {
-  const d = document.createElement("div");
-  d.className = "drop";
-  d.style.left = Math.random()*100 + "vw";
-  d.style.height = 40 + Math.random()*90 + "px";
-  d.style.animationDuration = 0.4 + Math.random()*0.8 + "s";
-  d.style.opacity = Math.random();
+const rain=document.querySelector(".rain");
+for(let i=0;i<180;i++){
+  const d=document.createElement("div");
+  d.className="drop";
+  d.style.left=Math.random()*100+"vw";
+  d.style.height=40+Math.random()*80+"px";
+  d.style.animationDuration=0.5+Math.random()*0.7+"s";
   rain.appendChild(d);
 }
 </script>
