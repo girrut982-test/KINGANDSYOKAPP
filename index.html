@@ -2,48 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Live TV Apps</title>
+  <title>Shomex Premium</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <h1>Premium Live TV Apps</h1>
-  <div class="tagline">
-    Unlimited Entertainment • Live TV • Movies • Sports
-  </div>
-  <div class="live">LIVE TV</div>
-</header>
+<!-- REALISTIC RAIN -->
+<div class="rain"></div>
 
-<!-- CONTENT -->
-<div class="container">
+<!-- BANNER -->
+<section class="banner">
+  <img src="KEDAI.png" alt="Shomex Shop Banner">
+</section>
 
-  <!-- KINGTV -->
+<!-- APPS -->
+<section class="container">
+
   <div class="app-card">
-    <img src="logo.png" alt="KINGTV Logo" class="logo">
+    <img src="logo.png">
     <h2>KINGTV</h2>
-
-    <a href="https://bit.ly/Dking01" class="btn">Download Link 1</a>
-    <a href="https://tinyurl.com/kingtv22" class="btn">Download Link 2</a>
+    <p>Live TV, Movies, Sports & More</p>
+    <a href="#" class="btn">Download Link 1</a>
+    <a href="#" class="btn outline">Download Link 2</a>
+    <button class="btn package-btn">📦 View Packages</button>
   </div>
 
-  <!-- SYOKTV -->
   <div class="app-card">
-    <img src="logo.png" alt="SYOKTV Logo" class="logo">
+    <img src="logo2.png">
     <h2>SYOKTV</h2>
-
-    <a href="https://tinyurl.com/syoktv2" class="btn">Download Link 1</a>
-    <a href="https://cutt.ly/shosyok" class="btn">Download Link 2</a>
+    <p>Live TV, Movies, Sports & More</p>
+    <a href="#" class="btn">Download Link 1</a>
+    <a href="#" class="btn outline">Download Link 2</a>
+    <button class="btn package-btn">📦 View Packages</button>
   </div>
 
-</div>
+  <div class="app-card">
+    <img src="logo3.png">
+    <h2>SYBERTV</h2>
+    <p>Live Channels, Movies & Sports</p>
+    <a href="#" class="btn">Download Link 1</a>
+    <a href="#" class="btn outline">Download Link 2</a>
+    <button class="btn package-btn">📦 View Packages</button>
+  </div>
 
-<!-- FOOTER -->
-<footer>
-  © KINGTV & SYOKTV — All Rights Reserved
-</footer>
+  <div class="app-card">
+    <img src="logo4.png">
+    <h2>ODTV</h2>
+    <p>Live Channels, Movies & Sports</p>
+    <a href="#" class="btn">Download Link 1</a>
+    <a href="#" class="btn outline">Download Link 2</a>
+    <button class="btn package-btn">📦 View Packages</button>
+  </div>
+
+</section>
+
+<footer>© 2025 SHOMEX SHOP — All Rights Reserved</footer>
+
+<!-- RAIN SCRIPT -->
+<script>
+const rain = document.querySelector(".rain");
+
+for (let i = 0; i < 200; i++) {
+  const drop = document.createElement("div");
+  drop.classList.add("drop");
+
+  drop.style.left = Math.random() * 100 + "vw";
+  drop.style.animationDuration = 0.4 + Math.random() * 0.8 + "s";
+  drop.style.height = 40 + Math.random() * 90 + "px";
+  drop.style.opacity = Math.random();
+
+  rain.appendChild(drop);
+}
+</script>
 
 </body>
 </html>
