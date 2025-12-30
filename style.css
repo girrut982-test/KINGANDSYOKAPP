@@ -1,129 +1,88 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Arial,sans-serif;
+  background:radial-gradient(circle at top,#0b1c2d,#020b14);
+  color:#9fd4ff;
+  overflow-x:hidden;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #0b1c2d, #020b14);
-  color: #9fd4ff;
-  overflow-x: hidden;
+/* ===== RAIN ===== */
+.rain{position:fixed;inset:0;pointer-events:none;z-index:-1}
+.drop{
+  position:absolute;
+  bottom:100%;
+  width:2px;
+  background:linear-gradient(transparent,rgba(170,220,255,.8));
+  animation:fall linear infinite;
+}
+@keyframes fall{to{transform:translateY(120vh)}}
+
+/* ===== LIGHTNING ===== */
+.lightning{
+  position:fixed;
+  inset:0;
+  background:white;
+  opacity:0;
+  animation:flash 7s infinite;
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes flash{
+  0%,92%,100%{opacity:0}
+  93%{opacity:.15}
+  94%{opacity:.4}
+  95%{opacity:.1}
 }
 
-/* ================= RAIN ================= */
-.rain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
+/* ===== CAR ===== */
+.car{
+  position:fixed;
+  bottom:15px;
+  left:-150px;
+  z-index:2;
+  animation:drive 18s linear infinite;
+}
+.car img{
+  width:120px;
+  filter:drop-shadow(0 0 8px rgba(0,140,255,.6));
+}
+@keyframes drive{
+  from{transform:translateX(-200px)}
+  to{transform:translateX(120vw)}
 }
 
-.drop {
-  position: absolute;
-  bottom: 100%;
-  width: 2px;
-  background: linear-gradient(
-    transparent,
-    rgba(170,220,255,0.8)
-  );
-  animation: fall linear infinite;
+/* ===== UI (YOUR ORIGINAL) ===== */
+.banner img{width:100%;max-height:360px;object-fit:cover}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:30px;
 }
-
-.drop::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 8px;
-  height: 3px;
-  border-radius: 50%;
-  background: rgba(170,220,255,0.6);
-  opacity: 0;
+.app-card{
+  background:rgba(255,255,255,.06);
+  border-radius:18px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 0 35px rgba(0,140,255,.3);
+  transition:.3s;
 }
-
-@keyframes fall {
-  to {
-    transform: translateY(120vh);
-  }
+.app-card:hover{transform:translateY(-6px)}
+.app-card img{width:110px;margin-bottom:15px}
+.btn{
+  display:block;
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:30px;
+  background:linear-gradient(135deg,#008cff,#4fc3ff);
+  font-weight:bold;
+  text-decoration:none;
+  color:#000;
 }
-
-/* ================= BANNER ================= */
-.banner img {
-  width: 100%;
-  max-height: 360px;
-  object-fit: cover;
-}
-
-/* ================= GRID ================= */
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 60px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px;
-}
-
-/* ================= CARD ================= */
-.app-card {
-  background: rgba(255,255,255,0.06);
-  border-radius: 18px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 0 35px rgba(0,140,255,0.3);
-  transition: 0.3s;
-}
-
-.app-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 45px rgba(0,140,255,0.6);
-}
-
-.app-card img {
-  width: 110px;
-  margin-bottom: 15px;
-}
-
-.app-card h2 {
-  color: #fff;
-}
-
-.app-card p {
-  font-size: 14px;
-  margin-bottom: 15px;
-}
-
-/* ================= BUTTONS ================= */
-.btn {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  border-radius: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  background: linear-gradient(135deg, #008cff, #4fc3ff);
-  color: #000;
-  border: none;
-  cursor: pointer;
-}
-
-.btn.outline {
-  background: transparent;
-  border: 1px solid #4fc3ff;
-  color: #4fc3ff;
-}
-
-.package-btn {
-  background: linear-gradient(135deg, #ff3b3b, #ff7676);
-  color: #fff;
-}
-
-/* ================= FOOTER ================= */
-footer {
-  text-align: center;
-  padding: 25px;
-  font-size: 13px;
-  color: #7bbcff;
-  border-top: 1px solid rgba(0,140,255,0.3);
-}
+.btn.outline{background:transparent;border:1px solid #4fc3ff;color:#4fc3ff}
+.package-btn{background:linear-gradient(135deg,#ff3b3b,#ff7676);color:#fff}
+footer{text-align:center;padding:25px;font-size:13px;color:#7bbcff}
